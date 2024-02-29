@@ -19,7 +19,7 @@ const Main = (props: IMainProps) => {
         <header className="border-b border-gray-300">
           <div className="flex items-center justify-between py-4">
             <div>
-              {/* <img className="mivozlogo" src="./mivoz-talk-logo.png" /> */}
+              <img className="mivozlogo" src="/mivoz-talk-logo.png" />
             </div>
             <div className="flex items-center space-x-4">
               <button
