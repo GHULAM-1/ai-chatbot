@@ -10,7 +10,6 @@ const openai = new OpenAI({
 export const runtime = "edge";
 
 export async function POST(req: Request) {
-  console.log(req.body)
   const { messages } = await req.json();
 
   // Ask OpenAI for a streaming chat completion given the prompt

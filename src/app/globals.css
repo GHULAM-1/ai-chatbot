@@ -2,32 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+a {
+  @apply text-blue-700;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+a:hover {
+  @apply border-b-2 border-blue-700;
+}
+
+.content p {
+  @apply my-6;
+}
+
+.content ul {
+  @apply my-6;
+}
+
+.talking-user {
+  width: min-content;
+  min-width: 30%;
+  padding: 2em;
+  max-width: 80%;
+  background: rgba(45, 71, 254, 0.6);
+  color: #fff;
+  border-radius: 2em;
+  clear: right;
+}
+
+.talking-mivoz {
+  width: min-content;
+  min-width: 50%;
+  max-width: 80%;
+  padding: 2em;
+  float: right;
+  background: rgba(45, 71, 254, 0.2);
+  color: #fff;
+  border-radius: 2em;
+  clear: left;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #13252b;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+button.talkingtomivoz {
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  margin: 0 auto;
+  bottom: 1em;
+  background: rgba(45, 71, 254, 1);
+}
+button.talkingtomivoz svg {
+  text-align: center;
+  margin: 0 auto;
+}
+button.listeningtomivoz:after {
+  content: "Listening ...";
+  font-size: 0.5em;
+  font-weight: 300;
+}
+button.listeningtomivoz {
+  position: absolute;
+  width: min-content;
+  height: 2em;
+  text-align: center;
+  margin: 0 auto;
+  bottom: 1em;
+}
+.chathistory {
+  height: 65vh;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(45, 71, 254, 0.4) !important;
+}
+.mivozstatus {
+  color: rgba(45, 71, 254, 1) !important;
+}
+.mivoztranscript {
+  position: absolute;
+  bottom: 4em;
+}
+.mivozcontroller {
+  bottom: 0;
+}
+.mivoztranscribing {
+  position: absolute;
+  bottom: 5em;
+}
+.mivozlogo {
+  height: 4em;
 }
