@@ -12,7 +12,14 @@ import LoadingIndicator from "./talkingWave";
 export default function Chat() {
   const [key, setKey] = useState("df");
 
-  const { messages, input, handleInputChange, handleSubmit, append } = useChat({
+  const {
+    messages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    append,
+    isLoading,
+  } = useChat({
     onFinish: (messages) => assistantSpeak(messages.content, messages.role),
     body: {
       sessionId: key,
@@ -74,7 +81,7 @@ export default function Chat() {
 
   return (
     <div className="flex flex-col w-full">
-      <div className="mt-4 h-[70vh] justify-center items-center w-full overflow-y-auto p-4">
+      <div className="mt-4 h-[63vh] mb-4  justify-center items-center w-full overflow-y-auto p-4">
         {messages.map((m, index) => {
           return (
             <div
@@ -108,11 +115,20 @@ export default function Chat() {
         <button type="submit" style={{ display: "none" }}></button>
       </form>
 
-      <div className="flex gap-4 items-center justify-center w-full">
+      <div className="flex gap-4 items-center flex-col justify-center w-full">
         {hasRecognitionSupport ? (
           <>
+            {!isLoading ? (
+              <div
+                className={`${
+                  isLoading ? "flex" : "hidden"
+                } font-bold text-gray-500 opacity-70 -tracking-tight`}
+              >
+                Thinking
+              </div>
+            ) : null}
             <button
-              className={`bg-[#2d47fe] rounded-full w-[70px] h-[70px] flex justify-center items-center ${
+              className={`bg-[#2d47fe] mb-4 rounded-full w-[70px] h-[70px] flex justify-center items-center ${
                 isListening ? "hover:bg-red-600" : "hover:opacity-90"
               }`}
               onClick={handleListeningButton}

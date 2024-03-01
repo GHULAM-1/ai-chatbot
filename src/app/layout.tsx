@@ -5,6 +5,9 @@ import "./globals.css";
 import Nav from "@/components/nav";
 
 const inter = Inter({ subsets: ["latin"] });
+export const metadata: Metadata = {
+  title: "Talking2AI",
+};
 
 export default function RootLayout({
   children,
