@@ -1,14 +1,17 @@
 "use client";
 import { useState, useEffect } from "react";
+
 let recognition: any = null;
 if (typeof window !== "undefined") {
   if ("webkitSpeechRecognition" in window) {
     recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
-    recognition.language = "en-US";
+    recognition.lang = "de";
+    // recognition.interimResults = false;
+    // recognition.maxAlternatives = 1;
   }
 }
-const useSpeechRecognition = () => {
+const useVoiceRecognition = () => {
   const [text, setText] = useState("");
   const [isListening, setIsListening] = useState(false);
   useEffect(() => {
@@ -39,4 +42,4 @@ const useSpeechRecognition = () => {
   };
 };
 
-export default useSpeechRecognition;
+export default useVoiceRecognition;

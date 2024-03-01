@@ -20,8 +20,8 @@ const LoadingIndicator = () => {
   }, []);
 
   return (
-    <div className="mt-4 text-center">
-      <span className="text-3xl font-bold text-blue-500">{dots}</span>
+    <div className=" text-center">
+      <span className="text-3xl font-bold text-white">{dots}</span>
     </div>
   );
 };
