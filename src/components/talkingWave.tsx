@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+"use client";
+import { useEffect, useState } from "react";
 
 const LoadingIndicator = () => {
-  const [dots, setDots] = useState('.');
+  const [dots, setDots] = useState(".");
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setDots((prevDots) => {
-        if (prevDots === '......') {
-          return '.';
+        if (prevDots === "......") {
+          return ".";
         }
         return `${prevDots}.`;
       });
