@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useChat } from "ai/react";
 import { Mic } from "lucide-react";
 import SpeechRecognition, {
@@ -54,16 +55,62 @@ export default function Chat() {
     }
   }, [isListening, text]);
 
+  const splitIntoSentences = (text: string) => {
+    return text.match(/[^\.!\?]+[\.!\?]+/g) || [];
+  };
+
+  const speakLangElevenlabs = async (text: string) => {
+    const sentences = splitIntoSentences(text);
+
+    for (const sentence of sentences) {
+      const startAudioTime = Date.now();
+      try {
+        const response = await axios.post(
+          "https://api.elevenlabs.io/v1/text-to-speech/iP95p4xoKVk53GoZ742B/stream?optimize_streaming_latency=4&output_format=mp3_22050_32",
+          {
+            model_id: "eleven_multilingual_v2",
+            voice_settings: {
+              stability: 0.8,
+              use_speaker_boost: true,
+              similarity_boost: 0.7,
+            },
+            text: sentence,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "xi-api-key": "3078bef05b30dd40b66b2198223697aa",
+            },
+            responseType: "arraybuffer",
+          }
+        );
+
+        const blob = new Blob([response.data], { type: "audio/mp3" });
+        const audio = new Audio();
+        audio.src = URL.createObjectURL(blob);
+
+        // Warten, bis die Audio-Wiedergabe beendet ist
+        await new Promise((resolve) => {
+          audio.onended = resolve;
+          audio.onplay = () => {
+            console.log(
+              "Dauer bis zum Abspielen des Audios:",
+              Date.now() - startAudioTime,
+              "ms"
+            );
+          };
+          audio.play();
+        });
+      } catch (error) {
+        console.error("Error occurred while fetching audio:", error);
+      }
+    }
+  };
+
   const assistantSpeak = (content: string, role: string) => {
+    console.log("in the game", content, role);
     if (role !== "user") {
-      console.log("in the game", content, role);
-
-      const speechSynthesis = window.speechSynthesis;
-
-      const speech = new SpeechSynthesisUtterance(content);
-
-      speech.lang = "de-DE";
-      speechSynthesis.speak(speech);
+      speakLangElevenlabs(content);
     }
   };
 
