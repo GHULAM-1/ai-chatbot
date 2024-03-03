@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CircularAudioVisualizer from "./CircularAudioVisualizer";
+import GammaWave from "./gamma-wave";
+import GammaWave2 from "./gamma-wave2/gamma-wave2";
 
 function AV() {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
@@ -19,13 +21,7 @@ function AV() {
       });
   }, []);
 
-  return (
-    <div>
-      {mediaRecorder && (
-        <CircularAudioVisualizer mediaRecorder={mediaRecorder} />
-      )}
-    </div>
-  );
+  return <div>{<GammaWave2 />}</div>;
 }
 
 export default AV;

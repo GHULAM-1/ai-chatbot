@@ -1,7 +1,10 @@
+import Head from "next/head"; // Import the Head component
+
 import "regenerator-runtime/runtime";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "./style.css";
 import Nav from "@/components/nav";
 
 const inter = Inter({ subsets: ["latin"] });

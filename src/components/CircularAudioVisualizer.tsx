@@ -12,6 +12,8 @@ const CircularAudioVisualizer: React.FC<CircularAudioVisualizerProps> = ({
   useEffect(() => {
     const audioContext = new (window.AudioContext || window.AudioContext)();
     const analyser = audioContext.createAnalyser();
+
+    
     analyser.fftSize = 256;
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
@@ -52,8 +54,17 @@ const CircularAudioVisualizer: React.FC<CircularAudioVisualizerProps> = ({
       audioContext.close();
     };
   }, [mediaRecorder]);
-
-  return <canvas className="circular-visualizer h-20" ref={canvasRef} />;
+  return (
+    <>
+      <svg className="round" id="Mic2" height="400px" width="400px">
+        <path
+          style={{ stroke: "url(#rgrad)", strokeWidth: "2px", fill: "none" }}
+        />
+      </svg>
+    </>
+  );
 };
 
 export default CircularAudioVisualizer;
+
+// return <canvas className="circular-visualizer h-20" ref={canvasRef} />;

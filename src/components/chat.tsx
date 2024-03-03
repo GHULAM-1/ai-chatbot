@@ -6,6 +6,7 @@ import { Mic } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import useVoiceRecognition from "@/hooks/useVoiceRecognition";
 import TalkingWave from "./talkingWave";
+import GammaWave2 from "./gamma-wave2/gamma-wave2";
 
 export default function Chat() {
   const [key, setKey] = useState("df");
@@ -172,7 +173,7 @@ export default function Chat() {
               </div>
             ) : null}
             <button
-              className={`bg-[#2d47fe] mb-4 rounded-full w-[70px] h-[70px] flex justify-center items-center ${
+              className={`bg-[#2d47fe]  mb-4 rounded-full w-[70px] h-[70px] flex justify-center items-center ${
                 isListening ? "hover:bg-red-600" : "hover:opacity-90"
               }`}
               onClick={handleListeningButton}
