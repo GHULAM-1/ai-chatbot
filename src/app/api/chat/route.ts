@@ -4,7 +4,6 @@ import { OpenAIStream, StreamingTextResponse } from "ai";
 export const runtime = "edge";
 export async function POST(req: Request) {
   const { messages, sessionId } = await req.json();
-  console.log(sessionId);
   const openai = new OpenAI({
     apiKey: sessionId,
   });

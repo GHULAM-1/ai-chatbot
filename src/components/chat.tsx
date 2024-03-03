@@ -2,13 +2,10 @@
 import axios from "axios";
 import { useChat } from "ai/react";
 import { Mic } from "lucide-react";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
 
 import { useEffect, useRef, useState } from "react";
 import useVoiceRecognition from "@/hooks/useVoiceRecognition";
-import LoadingIndicator from "./talkingWave";
+import TalkingWave from "./talkingWave";
 
 export default function Chat() {
   const [key, setKey] = useState("df");
@@ -181,7 +178,7 @@ export default function Chat() {
               onClick={handleListeningButton}
             >
               {isListening ? (
-                <LoadingIndicator />
+                <TalkingWave />
               ) : (
                 <Mic strokeWidth={2} className="stroke-white"></Mic>
               )}

@@ -1,29 +1,31 @@
-"use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import CircularAudioVisualizer from "./CircularAudioVisualizer";
 
-const LoadingIndicator = () => {
-  const [dots, setDots] = useState(".");
+function AV() {
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
+    null
+  );
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setDots((prevDots) => {
-        if (prevDots === "......") {
-          return ".";
-        }
-        return `${prevDots}.`;
+    navigator.mediaDevices
+      .getUserMedia({ video: false, audio: true })
+      .then((stream) => {
+        const recorder = new MediaRecorder(stream);
+        recorder.start();
+        setMediaRecorder(recorder);
+      })
+      .catch((err) => {
+        console.error(`getUserMedia got an error: ${err}`);
       });
-    }, 500);
-
-    return () => {
-      clearInterval(intervalId);
-    };
   }, []);
 
   return (
-    <div className=" text-center">
-      <span className="text-3xl font-bold text-white">{dots}</span>
+    <div>
+      {mediaRecorder && (
+        <CircularAudioVisualizer mediaRecorder={mediaRecorder} />
+      )}
     </div>
   );
-};
+}
 
-export default LoadingIndicator;
+export default AV;
