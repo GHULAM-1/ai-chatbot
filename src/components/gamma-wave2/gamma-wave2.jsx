@@ -40,7 +40,9 @@ export default function GammaWave2() {
       };
 
       const pathMic2 = polarPath(e.inputBuffer, optionsMic2);
-      document?.querySelector("#Mic2 path").setAttribute("d", pathMic2);
+      if (document?.querySelector("#Mic2 path") !== null) {
+        document?.querySelector("#Mic2 path").setAttribute("d", pathMic2);
+      }
     };
   }
 
@@ -84,10 +86,6 @@ export default function GammaWave2() {
               }}
             />
           </svg>
-
-      
-
-          
         </div>
       </div>
     </>
