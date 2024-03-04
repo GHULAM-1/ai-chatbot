@@ -85,15 +85,9 @@ export default function GammaWave2() {
             />
           </svg>
 
-          {/* <svg className="round flex " id="">
-            <path
-              style={{
-                stroke: "url(#rgrad)",
-                strokeWidth: "2px",
-                fill: "none",
-              }}
-            />
-          </svg> */}
+      
+
+          
         </div>
       </div>
     </>

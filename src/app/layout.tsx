@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <body
-        className={`${inter.className} bg-[#13252B] flex  justify-start items-center flex-col`}
+        className={`${inter.className} bg-[#13252B] flex  justify-start items-center flex-col mx-4`}
       >
         <Nav></Nav>
 
